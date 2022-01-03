@@ -1,5 +1,5 @@
 \documentclass[12pt, letterpaper]{article}
-\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[a4paper, total={7in, 9in}]{geometry}
 \setlength{\parindent}{0pt}
 \usepackage{xcolor}
 \usepackage{atbegshi}
@@ -27,9 +27,9 @@ Hello! My name is Blake Hall and I live in San Diego. I have my Bachelors Degree
 from Reed College in Portland, OR. I started programming in roughly 2009. Enough about me. The intention of this book 
 is to teach you (well, me, really) how to develop apps. For money.
 
-\section{Console, vim, git, and Version Control}
+\section{Console, vim, git, and version control}
 
-\subsection{The Terminal and iTerm}
+\subsection*{The Terminal and iTerm}
 
 So, most programming books and courses start you off slowly. They introduce you to coding through an IDE (integrated
 development environment), blah blah blah. Well I'm going to throw you in the deep end knowing that you'll be just fine.
@@ -44,7 +44,7 @@ Terminal and press enter.
 
 Here's the nitty-gritty of it. You enter a command into the Terminal, and it gives you a response. But I like to imagine it
 like an old school text RPG. You can move around, you can check your inventory, you can fight monsters (call functions!),
-etc., etc. It's the same thing. Well, what are the commands that are available to you? \\
+etc., etc. It's the same thing. Well, what are the commands that are available to you? \\\
 
 \begin{enumerate}
     \itemsep0em
@@ -56,9 +56,15 @@ etc., etc. It's the same thing. Well, what are the commands that are available t
     \item{Move a file: \verb+mv fileToMove targetDirectory+}
 \end{enumerate}
 
-\subsection{vim}
+\begin{figure}[ht]
+    \centering
+        \includegraphics[scale=.3]{git_repository_URL_screenshot}
+    \caption{"The URL from your new initilized GitHub repository you should copy from GitHub."}
+\end{figure}
 
-\subsection{git}
+\subsection*{vim}
+
+\subsection*{git}
 
 \begin{enumerate}
     \itemsep0em
@@ -71,7 +77,9 @@ etc., etc. It's the same thing. Well, what are the commands that are available t
     \item{\verb+git push -u origin master+}
 \end{enumerate}
 
-\subsection{Version Control}
+
+
+\subsection*{Version control}
 
 \section{HTML and CSS}
 
@@ -82,37 +90,48 @@ and decorations and all the things that make a house nice and cozy. Take a look 
 
 \subsection*{Basic HTML File}
 
-\begin{verbatim}
+\begin{figure}[ht]
+\centering
+\begin{BVerbatim}
 index.html
 -----------------------------------------------------------------------
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="device-width", initial-scale="1">
-        <title> My Webpage </title>
-    </head>
-    <body>
-        <p> This is a paragraph! </p>
-    </body>
-</html>
-\end{verbatim}
+1  <!DOCTYPE html>
+2  <html>
+3      <head>
+4          <meta charset="utf-8">
+5          <meta name="viewport" content="device-width", initial-scale="1">
+6          <title> My Webpage </title>
+7      </head>
+8      <body>
+9          <p> This is a paragraph! </p>
+10     </body>
+11 </html>
+-----------------------------------------------------------------------
+\end{BVerbatim}
+\caption{Boiler plate HTML.}
+\end{figure}
+
 
 I'm going to tell you right now there's a heck of a lot of stuff you can ignore here. In fact, here's another copy with 
-all the extra fluff hidden:
+all the extra fluff hidden: \\
 
-\begin{verbatim}
+\begin{figure}[ht]
+\centering
+\begin{BVerbatim}
 index.html
--------------------------------------
-<html>
-    <head>
-        <title> My Webpage </title>
-    </head>
-    <body>
-        <p> This is a paragraph! </p>
-    </body>
-</html>
-\end{verbatim}
+-----------------------------------------------------------------------
+2  <html>
+3      <head>
+6          <title> My Webpage </title>
+7      </head>
+8      <body>
+9          <p> This is a paragraph! </p>
+10     </body>
+11 </html>
+-----------------------------------------------------------------------
+\end{BVerbatim}
+\caption{All the HTML you need to worry about right now.}
+\end{figure}
 
 Lets work inside out. The string \verb+"This is a paragraph!"+ lives inside the \verb+<p>+ element (where \verb+p+
 stands for paragraph). The \verb+<p>+ element lives inside the \verb+<body>+ element. If you examine the hierarchy
@@ -123,20 +142,26 @@ of the elements, you'll see that \verb+<body>+ doesn't live in \verb+<head>+ and
 CSS is very, very simple. Just like it's easier to paint a house than it is to build it, CSS is that much easier than
 HTML. Let's say we want to paint the text inside the paragraph white. With code, all we need to do is have some way
 to select the paragraph we want to paint, and then "paint it". Two step process. One way we can select the paragraph is
-by giving it an \verb+id+. How do we do that? Simple. Alter the code for the paragraph to look like this:
+by giving it an \verb+id+. How do we do that? Simple. Alter the code for the paragraph to look like this: \\
 
-\begin{verbatim}
+\begin{figure}[ht]
+\centering
+\begin{BVerbatim}
         <p id="paragraphToPaint"> This is a paragraph! </p>
-\end{verbatim}
+\end{BVerbatim}
+\end{figure}
 
 Now, our parapgraph has an \verb+id+ of \emph{paragraphToPaint}. Okay, now that our paragraph has a name we can point to,
-we can paint it. The CSS code, again, is very simple:
+we can paint it. The CSS code, again, is very simple: \\
 
-\begin{verbatim}
+\begin{figure}[ht]
+\centering
+\begin{BVerbatim}
 #paragraphToPaint {
     color: white;
 }
-\end{verbatim}
+\end{BVerbatim}
+\end{figure}
 
 Here, the octothorpe (\#) means we're talking about an \verb+id+, \verb+paragraphToPaint+ is the value stored in our
 \verb+id+, \verb+color+ is the selector for text color, and \verb+white+ is a premade color we're allowed to use. Here's the 
@@ -147,13 +172,16 @@ all white, we couldn't assign them all the \verb+id paragraphToPaint+. Instead, 
 We can use as many of those as we like. The only two differences are: one, we use a \verb+.+ instead of a \verb+#+; 
 and two, we use the term \verb+class+ instead of \verb+id+. Here's the code:
 
-\begin{verbatim}
+\begin{figure}
+\centering
+\begin{BVerbatim}
         <p class="paragraphsToPaint"> This is a paragraph! </p>
 
 .paragraphToPaint {
     color: white;
 }
-\end{verbatim}
+\end{BVerbatim}
+\end{figure}
 
 This will ensure that all of the paragraph receive a fresh coat of white paint. We can assign classes and IDs to just
 about any HTML element, allowing us a wide variety of avenues to take when designing an app. Additionally, CSS has a
@@ -434,5 +462,53 @@ func textFieldDidEndEditing(_ textField: UITextField) {
 \end{verbatim}
 
 Aaaaaannnndd major blueballs. Time for another Swift Deep Dive: \verb+protocols+.
+
+\subsubsection*{145 Swift Protocals}
+
+What is a Swift Protocol and what does it allow us to do? Think of it as a certification in your resume. Imagine a 
+CPR certification: doctors need it, paramedics need it, etc. A protocol defines a set of requirements. Then, a 
+class or struct adopts a protocol and from there on it needs to meet the requirements set forth in the protocol:
+
+\begin{verbatim}
+protocol MyProtocol {
+    // Define requirements.
+}
+
+struct MyStruct: MyProtocol {}
+ckass MyClass: MyProtocol {}
+\end{verbatim}
+
+Create a new \textbf{macOS} $\Rightarrow$ \textbf{Command Line Tool} in Xcode and name it Protocols Demo, hit Finish,
+and save it anywhere. Clear out \emph{main.swft}. Let's define a class for birds. For now, our bird can fly and lay
+an egg if it's female. Additionally, let's create an Eagle class from our Bird class, but let's say eagles can Soar
+in addition to Fly. 
+
+\begin{verbatim}
+main.swift
+--------------------------------------------------------------------------------
+1  class Bird {
+2      var isFemale = true
+3      func layEgg() {
+4          if isFemale() {
+5              print("The bird lays an egg.")
+6          }
+7      }
+8      func fly() {
+9          print("The bird flies.")
+10      }
+11  }
+12
+13  class Eagle: Bird {
+14      func soar() {
+15          print("The eagle soars.")
+16      }
+17 }
+--------------------------------------------------------------------------------
+\end{verbatim}
+
+Alls well and good here. Our birds and eagles can fly, lay eggs, soar. Neato. But what's the issue? Well, what about 
+penguins? Penguins can swim and lay eggs, but they can't fly or soar. We'd like to create a Penguin class from our Bird
+class, but we can't have our penguins be flying around. Let's say we have a museum and they want to demonstrate 
+the flying capabilities of different birds. 
 
 \end{document}

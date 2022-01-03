@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.1.2)  3 JAN 2022 12:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.1.2)  3 JAN 2022 13:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -132,15 +132,15 @@ LaTeX Font Info:    ... okay on input line 15.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(81.94394pt, 433.62pt, 81.94394pt)
-* v-part:(T,H,B)=(106.75473pt, 578.15999pt, 160.13213pt)
+* h-part:(L,W,R)=(45.80893pt, 505.89pt, 45.80894pt)
+* v-part:(T,H,B)=(77.84674pt, 650.43pt, 116.77011pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=433.62pt
-* \textheight=578.15999pt
-* \oddsidemargin=9.67395pt
-* \evensidemargin=9.67395pt
-* \topmargin=-2.51526pt
+* \textwidth=505.89pt
+* \textheight=650.43pt
+* \oddsidemargin=-26.46106pt
+* \evensidemargin=-26.46106pt
+* \topmargin=-31.42325pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=12.0pt
@@ -198,155 +198,152 @@ Underfull \hbox (badness 10000) in paragraph at lines 45--48
 
 [2{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./ima
 ges//terminal_screenshot.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 78--82
+<./images//git_repository_URL_screenshot.png, id=13, 1610.015pt x 193.72375pt>
+File: ./images//git_repository_URL_screenshot.png Graphic file (type png)
+<use ./images//git_repository_URL_screenshot.png>
+Package pdftex.def Info: ./images//git_repository_URL_screenshot.png  used on i
+nput line 61.
+(pdftex.def)             Requested size: 483.00824pt x 58.11757pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 86--90
 
  []
 
-[3]
-Overfull \hbox (4.80522pt too wide) in paragraph at lines 99--99
-[]\OT1/cmtt/m/n/12 ------------------------------------------------------------
------------[] 
+
+Underfull \hbox (badness 10000) in paragraph at lines 115--117
+
  []
 
 
-Overfull \hbox (10.98022pt too wide) in paragraph at lines 99--99
-[]        \OT1/cmtt/m/n/12 <meta name="viewport" content="device-width", initia
-l-scale="1">[] 
+Underfull \hbox (badness 10000) in paragraph at lines 136--141
+
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 117--122
+[3 <./images//git_repository_URL_screenshot.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 142--146
 
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 141--144
+Underfull \hbox (badness 10000) in paragraph at lines 154--156
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--182
+Underfull \hbox (badness 10000) in paragraph at lines 166--169
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 209--210
 
  []
 
 [5]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 198.
+(Font)              <12> on input line 226.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 198.
+(Font)              <8> on input line 226.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 198.
+(Font)              <6> on input line 226.
 
-Underfull \hbox (badness 10000) in paragraph at lines 198--203
+Underfull \hbox (badness 10000) in paragraph at lines 226--231
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 215--219
+Underfull \hbox (badness 10000) in paragraph at lines 243--247
 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 230--236
+Underfull \hbox (badness 10000) in paragraph at lines 258--264
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 250--254
+Underfull \hbox (badness 10000) in paragraph at lines 278--282
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 255--258
+Underfull \hbox (badness 10000) in paragraph at lines 283--286
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 285--287
+Underfull \hbox (badness 10000) in paragraph at lines 313--315
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 290--294
-
- []
-
-[8]
 Underfull \hbox (badness 10000) in paragraph at lines 318--322
 
  []
 
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 346--350
 
-Underfull \hbox (badness 10000) in paragraph at lines 331--333
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 359--361
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 369--371
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 372--375
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 390--393
 
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 341--343
+Underfull \hbox (badness 10000) in paragraph at lines 419--421
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 344--347
-
- []
-
-
-Overfull \hbox (49.84962pt too wide) in paragraph at lines 362--365
-[]\OT1/cmr/m/n/12 When the in-ter-acts with [][]\OT1/cmtt/m/n/12 searchTextFiel
-d[]\OT1/cmr/m/n/12 , the search field will no-tify [][]\OT1/cmtt/m/n/12 Weather
-ViewController
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 362--365
+Underfull \hbox (badness 10000) in paragraph at lines 428--432
 
  []
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 391--393
+Underfull \hbox (badness 10000) in paragraph at lines 449--452
 
  []
 
-
-Overfull \hbox (1.0581pt too wide) in paragraph at lines 400--404
-[]\OT1/cmr/m/n/12 This code will run any time a text field is done be-ing edit-
-ing, as long as the [][]\OT1/cmtt/m/n/12 endEditing
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 400--404
-
- []
-
-[11]
-Underfull \hbox (badness 10000) in paragraph at lines 421--424
-
- []
-
-[12] (./appDevelopment.aux) ) 
+[11] [12] (./appDevelopment.aux) ) 
 Here is how much of TeX's memory you used:
- 2600 strings out of 478994
- 37834 string characters out of 5858185
- 344644 words of memory out of 5000000
- 20093 multiletter control sequences out of 15000+600000
+ 2607 strings out of 478994
+ 38134 string characters out of 5858185
+ 345639 words of memory out of 5000000
+ 20100 multiletter control sequences out of 15000+600000
  409451 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,7n,74p,219b,267s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvip
-s/cm-super/cm-super-ts1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmti12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmtt12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-su
-per/sfrm1200.pfb>
-Output written on appDevelopment.pdf (11 pages, 438250 bytes).
+ 68i,7n,74p,226b,263s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2021/texmf-dist/fonts/enc
+/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmti12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/
+cm-super/sfrm1200.pfb>
+Output written on appDevelopment.pdf (11 pages, 507657 bytes).
 PDF statistics:
- 76 PDF objects out of 1000 (max. 8388607)
+ 78 PDF objects out of 1000 (max. 8388607)
  52 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
