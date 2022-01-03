@@ -1,0 +1,438 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\setlength{\parindent}{0pt}
+\usepackage{xcolor}
+\usepackage{atbegshi}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+% For centering verbatims %
+\usepackage{fancyvrb}
+%  Remove pesky error-prone first page %
+\AtBeginDocument{\AtBeginShipoutNext{\AtBeginShipoutDiscard}}
+\title{Foundations in App Development}
+\author{Blake Hall}
+
+\begin{document}
+
+\definecolor{myBackgroundColor}{RGB}{214 214 214}i
+\definecolor{myMainTextColor}{RGB}{5 36 66}
+\pagecolor{myBackgroundColor} 
+\color{myMainTextColor} 
+
+\maketitle{}
+
+\section{Introduction}
+
+Hello! My name is Blake Hall and I live in San Diego. I have my Bachelors Degree in Mathematics (focus in Comp. Sci.)
+from Reed College in Portland, OR. I started programming in roughly 2009. Enough about me. The intention of this book 
+is to teach you (well, me, really) how to develop apps. For money.
+
+\section{Console, vim, git, and Version Control}
+
+\subsection{The Terminal and iTerm}
+
+So, most programming books and courses start you off slowly. They introduce you to coding through an IDE (integrated
+development environment), blah blah blah. Well I'm going to throw you in the deep end knowing that you'll be just fine.
+We're going to learn how to develop using a tool called the Terminal. On your Mac, press Command-Space and type in 
+Terminal and press enter. 
+
+\begin{figure}[ht]
+    \centering
+        \includegraphics[scale=.12]{terminal_screenshot}
+    \caption{"The powerful yet elusive Terminal."}
+\end{figure}
+
+Here's the nitty-gritty of it. You enter a command into the Terminal, and it gives you a response. But I like to imagine it
+like an old school text RPG. You can move around, you can check your inventory, you can fight monsters (call functions!),
+etc., etc. It's the same thing. Well, what are the commands that are available to you? \\
+
+\begin{enumerate}
+    \itemsep0em
+    \item{Move from one directory to another: \verb+cd targetDirectory+}
+    \item{List the contents of the current directory: \verb+ls+}
+    \item{Create a new folder in the current directory: \verb+mkdir newDirectory+}
+    \item{Create a new file: \verb+touch newFile+}
+    \item{Delete a file: \verb+rm fileToRemove+}
+    \item{Move a file: \verb+mv fileToMove targetDirectory+}
+\end{enumerate}
+
+\subsection{vim}
+
+\subsection{git}
+
+\begin{enumerate}
+    \itemsep0em
+    \item{\verb+gh repo create+}
+    \item{\verb+git init+}
+    \item{\verb+git add *+}
+    \item{\verb+git commit -m "Changes I've made since last push"+}
+    \item{Visit GitHub and copy the source link for your repository. We will call this \verb+URL+.}
+    \item{\verb+git remote add origin URL+}
+    \item{\verb+git push -u origin master+}
+\end{enumerate}
+
+\subsection{Version Control}
+
+\section{HTML and CSS}
+
+Now that you're a pro at navigating the Terminal (or iTerm, whichever path you've chosen), we're going to get to building
+apps. And we're going to jump right in by learning how to build attractive website with just HTML and CSS. A good
+way to think about these two languages is like a house: HTML is the wood and beams and foundation, CSS is the paint
+and decorations and all the things that make a house nice and cozy. Take a look at the HTML file below. \\
+
+\subsection*{Basic HTML File}
+
+\begin{verbatim}
+index.html
+-----------------------------------------------------------------------
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="device-width", initial-scale="1">
+        <title> My Webpage </title>
+    </head>
+    <body>
+        <p> This is a paragraph! </p>
+    </body>
+</html>
+\end{verbatim}
+
+I'm going to tell you right now there's a heck of a lot of stuff you can ignore here. In fact, here's another copy with 
+all the extra fluff hidden:
+
+\begin{verbatim}
+index.html
+-------------------------------------
+<html>
+    <head>
+        <title> My Webpage </title>
+    </head>
+    <body>
+        <p> This is a paragraph! </p>
+    </body>
+</html>
+\end{verbatim}
+
+Lets work inside out. The string \verb+"This is a paragraph!"+ lives inside the \verb+<p>+ element (where \verb+p+
+stands for paragraph). The \verb+<p>+ element lives inside the \verb+<body>+ element. If you examine the hierarchy
+of the elements, you'll see that \verb+<body>+ doesn't live in \verb+<head>+ and \verb+<head>+ doesn't live in \verb+<body>+, but 
+\verb+<head>+ lives on top of \verb+<body>+. So on your webpage, the head will appear above the body. Inside the \verb+head+ element lives the 
+\verb+<title>+ element. Finally, you'll see that head and body live inside the biggest element, \verb+<HTML>+. \\
+
+CSS is very, very simple. Just like it's easier to paint a house than it is to build it, CSS is that much easier than
+HTML. Let's say we want to paint the text inside the paragraph white. With code, all we need to do is have some way
+to select the paragraph we want to paint, and then "paint it". Two step process. One way we can select the paragraph is
+by giving it an \verb+id+. How do we do that? Simple. Alter the code for the paragraph to look like this:
+
+\begin{verbatim}
+        <p id="paragraphToPaint"> This is a paragraph! </p>
+\end{verbatim}
+
+Now, our parapgraph has an \verb+id+ of \emph{paragraphToPaint}. Okay, now that our paragraph has a name we can point to,
+we can paint it. The CSS code, again, is very simple:
+
+\begin{verbatim}
+#paragraphToPaint {
+    color: white;
+}
+\end{verbatim}
+
+Here, the octothorpe (\#) means we're talking about an \verb+id+, \verb+paragraphToPaint+ is the value stored in our
+\verb+id+, \verb+color+ is the selector for text color, and \verb+white+ is a premade color we're allowed to use. Here's the 
+catch with \verb+ID+s. You can only use 'em once. \\
+
+For example, if we had three paragraphs and we wanted to paint them
+all white, we couldn't assign them all the \verb+id paragraphToPaint+. Instead, we use what's called a \verb+class+.
+We can use as many of those as we like. The only two differences are: one, we use a \verb+.+ instead of a \verb+#+; 
+and two, we use the term \verb+class+ instead of \verb+id+. Here's the code:
+
+\begin{verbatim}
+        <p class="paragraphsToPaint"> This is a paragraph! </p>
+
+.paragraphToPaint {
+    color: white;
+}
+\end{verbatim}
+
+This will ensure that all of the paragraph receive a fresh coat of white paint. We can assign classes and IDs to just
+about any HTML element, allowing us a wide variety of avenues to take when designing an app. Additionally, CSS has a
+incredible array of selectors that allow you to make a website look like anything you can dream of. It's super easy
+to change background colors, fonts, borders, margins, the list goes on and on. Literally. You can find a list of
+all CSS properties here (check out the bar on the left):
+
+\begin{figure}[ht]
+\centering
+\begin{BVerbatim}
+https://www.w3schools.com/css/default.asp
+\end{BVerbatim}
+\end{figure}
+
+\section{JavaScript, HTML, CSS, and Web Development}
+
+\section{Xcode, Swift 5, and iOS Development}
+
+\subsection*{Section 1: Getting Started with iOS Development and Swift 5}
+
+\subsection*{15: The I Am Rich App}
+
+\subsubsection*{1st Module Game Plane}
+
+Very simple app that sold for \$999. It had no functionality. Eight people bought it. \\
+
+This module will cover the following:
+\begin{enumerate}
+    \itemsep0em
+    \item{How to create and set up a new iOS project from scratch.}
+    \item{Get an overview of Xcode, the software for creating iOS apps.}
+    \item{How to design your app in Xcode using iOS components.}
+    \item{How to incorporate your own image assests into your app.}
+    \item{How to design and create a custom app icon.}
+    \item{How to run your app on a Simulator and the iPhone.}
+\end{enumerate}
+
+\subsection*{17: Let's Create a Brand New Xcode Project}
+
+\subsubsection*{Creating and setting up a new iOS project from scratch}
+
+Open Xcode. Click \textbf{Create a new Xcode project}. Create an iOS $\Rightarrow$ App. 
+Set \textbf{Interface} to \emph{Storyboard}. Set \textbf{Organization Identifier} to 
+\emph{com.yourNameHere}. The other defaults are fine: \textbf{Team} can stay \emph{none}; Life Cycle can stay
+\emph{UI Kit App Delegate}; \textbf{Language} is \emph{Swift}; and the three checkboxes at the
+bottom remain unchecked. Click \textbf{Next} and save your file anywhere with any name. \\
+
+\subsubsection*{Note! Xcode constantly saves the changes you make to your code.}
+
+If you ever want to find out where any of your files live, you can right click on any file in the 
+file tree at the top right and click \textbf{Show in Finder}. This will open a Finder window 
+containing your file. You can always navigate to that folder and open the project by double-clicking
+on the \emph{.project} file.
+
+Next we will familiarize ourselves with Xcode's layout.
+
+\subsubsection*{Getting an overview of Xcode}
+
+Expand Xcode as much as possible and open your project. The first screen to pop up is the General tab.
+We can change our minimum supported iOS version here. We can choose if we want it to run on iPhone
+and iPad or just one. We can limit our app to only selected orientations/rotations. We can choose
+our Status Bar style. We do most of our important work within the .swift and .storyboard files. \\
+
+The Xcode layout is split up into four main  areas: 
+\begin{enumerate}
+    \itemsep0em
+    \item{the \textbf{ Status Bar} at the top,} 
+    \item{the \textbf{Navigator Bar} at the left,}
+    \item{the \textbf{Main Storyboard} at the center (when \emph{Main.storyboard} is selected in the
+        \textbf{Navigator Bar})}
+    \item{the \textbf{Inspector Bar} at the right.}
+\end{enumerate}
+
+In the \textbf{Inspector Bar}, there is a tab called the \textbf{Size Inspector}. First drag and drop an
+element onto the story board from the \textbf{Object Library} (plus shaped button at the upper
+right of the storyboard view. Select the element. Then, at the top of the \textbf{Inspector Bar}, 
+navigate to the \textbf{Size Inspector}. Here, you can set the $x$ and $y$ coordinates of the center
+of the element; additionally you can set the \emph{height} and \emph{ width} properties 
+of the element. \\
+
+While a storyboard is selected, there is a bar visible just to the right of the \textbf{Navigator Bar} 
+called the \textbf{Document Outline}. If this were PhotoShop, this would be where the \emph{layers}.
+Finally, the very bottom pane is the \textbf{Debug Pane}.
+
+\subsubsection*{Note! All of these bars and windows can be toggled on and off.}
+
+Xcode has Light and Dark Mode capability -- head to  \textbf{Xcode} $\Rightarrow$ \textbf{Preferences...}
+$\Rightarrow$ \textbf{Appearance} to select which one you like.
+
+\subsection*{19: Let's Design the User Interface!}
+
+\subsubsection*{Design your app in Xcode using iOS components}
+
+Ensure \emph{Main.storyboard} is selected in the \textbf{Navigator Bar}. At the bottom of the storyboard
+view there is a tiny icon of an iPhone next to the text``iPhone 11". By clicking on either, we can
+selected which phone Xcode will emulate while running our program. Different iPhones have different
+aspect ratios, resolutions, etc. and will display the same app differently. \\
+
+In the storyboard view, if things are ever wonky, you can click on \emph{View Controller Scene} in the
+\textbf{Document Outline} to bring things back to center. When dragging an object from the
+\textbf{Object Library} onto the storyboard, there are guidelines for it to snap to. \\ 
+
+Example: drag a label onto a storyboard. Navigate to \textbf{Attributes Inspector} and change the
+text of the label. Change the color to white. Change the font size. We can change the \emph{background
+color} of a \emph{View}.
+
+\subsection*{Section 13: Networking, JSON Parsing, APIs, and Core Location}
+
+\subsection*{142: What You'll Make}
+
+A beautiful weather app that can get live weather data for the phone's GPS location or search for your own location.
+The app is also Dark Mode enabled. Here are some core concepts:
+
+\begin{enumerate}
+    \itemsep0em
+    \item{How to create a dark-mode enabled app and use vector assets.}
+    \item{Learn to use the \emph{UITextField} to get user input.}
+    \item{Learn about \textbf{Swift Protocals} and the \textbf{Delegate Design Pattern.}}
+    \item{Learn to work with APIs by making HTTP requests with \emph{URLSession}.}
+    \item{Parse JSON with the native JSONDecoder.}
+    \item{Learn to use computed properties, closures, and extensions.}
+    \item{Learn to use Core Location to get the GPS data.}
+\end{enumerate}
+
+\subsection*{143: Dark Mode and Working with Vector Assets}
+
+\subsubsection*{Setting Up Dark Mode Capability for Our App}
+
+As of iOS 13, Dark Mode is available to the entire operating system. An explanation on how colors work with Dark Mode.
+The weather app uses SF Symbols, Apple's proprietary bundle of symbols for use in iOS development. \\
+
+\subsection*{144: Learn to Use the UITextField}
+
+The \emph{Text Field} object allows the user to input some data into a text field using iOS's keyboard. You can set many
+properties of the UITextField in the \emph{Inspector Bar}, including one called \emph{Secure Text Entry} which obscures
+the user's input (as if they were putting in a password). Additionally, one can change the value of the return key.
+For example, instead of having the return key have text "return", you can have it say "go".\\
+
+Let's set up \emph{Main.storyboard}. Create IBOutlets for the image, the temperature label, city label, and for the search
+field. It should look like this when you're done.
+
+\begin{verbatim}
+WeatherViewController.swift
+---------------------------
+
+import UIKit
+
+class WeatherViewController: UIViewController {
+    @IBOutlet weak var conditionImageView: UIImageView!
+    @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var searchTextField: UITextField!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    // @IBActions go below me
+    // ...
+}
+\end{verbatim}
+
+We now wish to add an \verb+@IBAction+ below our \verb+viewDidLoad+ function by Option-dragging from the search bar to the space
+between the last two curly braces. Name the \verb+@IBAction+ \verb+searchPressed+ and set the \emph{Type} to \verb+UIButton+.
+The idea: user taps on the search field, types in the name of a city, presses the search button, and then we'll be able
+to access \verb+searchTextField+ to see what the user typed. \\
+
+We can access the value of the \verb+searchTextField+ using the \verb+text+ method and print it to the console:
+
+\begin{verbatim}
+    @IBAction func searchPressed(_ sender: UIButton) {
+        print(searchTextField.text)
+    }
+\end{verbatim}
+
+This is not to be confused with \emph{Placeholder} text, which is text that just sits in the text field until the user
+interacts with it. \\
+
+Because \verb+searchTextField.text+ has the possibility of being \verb+nil+, it is an optional type and must be unwrapped.
+One way we can do this is by adding an exclamation point:
+
+\begin{verbatim}
+        print(searchTextField.text!)
+\end{verbatim}
+
+If you're using the iPhone simulator to run your apps and the keyboard is nowhere to be found, the shortcut is Command-K ti
+bring it back. \\
+
+Try running the app and typing something into the search field. Press the return button on the iOS keyboard. And... nothing
+happens. We can't use an \verb+IBAction+, so we need to think of another way to get the button to do what we want it to do.
+And that's by using a \verb+delegate+. \\
+
+Start by adding a comma and \verb+UITextFieldDelegate+ after \verb+UIViewController+ in \emph{WeatherViewController.swift}:
+
+\begin{verbatim}
+class WeatherViewController: UIViewController, UITextFieldDelegate {
+    ...
+}
+\end{verbatim}
+
+Inside \verb+viewDidLoad()+ we are going to initialize the \verb+delegate+ as \verb+self+. 
+
+\begin{verbatim}
+        searchTextField.delegate = self
+\end{verbatim}
+
+When the interacts with \verb+searchTextField+, the search field will notify \verb+WeatherViewController+ about what happened.
+For example, we are going to use the premade function \newline \verb+textFieldShouldReturn+ which asks the delegate
+(the weather view controller) if the text field should process the pressing of the return button. \\
+
+The code in the following function executes exactly when the return button is pressed on the keyboard.
+
+\begin{verbatim}
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print(searchField.text!)
+        return true
+    }
+\end{verbatim}
+
+One problem. The keyboard won't dismiss itself after the return key is pressed. We can resolve this by using the 
+\verb+endEditing+ method. We're going to add it to both \verb+searchPressed+ and \verb+textFieldShouldReturn+:
+
+\begin{verbatim}
+    @IBAction func searchPressed(_ sender: UIButton) {
+        searchTextField.endEditing(true)
+        print(searchTextField.text!)
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchTextField.endEditing(true)
+        print(searchTextField.text!)
+        return true
+    }
+\end{verbatim}
+
+Now the keyboard should disappear upon either a press of the search button or of the return key on the keyboard. We
+now want to clear the search field after we're done editing it. Again, there's a \verb+delegate+ method for that. \\
+
+\begin{verbatim}
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        searchTextField.text = ""
+    }
+\end{verbatim}
+
+This code will run any time a text field is done being editing, as long as the \verb+endEditing+ method is included in the
+function. Finally, we have \verb+textFieldShouldEndEditing+, where we can define functionality for when the user tries
+to get out of the keyboard screen. Under what circumstances might we want to lock a user into the keyboard screen?
+Well, we can check to make sure that the user is inputting what we want them to. \\
+
+Think of when you sign up for a new website and we want to lock the user into the keyboard screen until the input a 
+password that has a number, an uppercase character, and a special character. Below we make sure that 
+\verb+textField.text+ isn't an empty string or else we use the text field's \emph{placeholder} value 
+to display a message to the user:
+
+\begin{verbatim}
+func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+    if textField.text != "" {
+        return true
+    } else {
+        textField.placeholder = "Type something..."
+        return false
+    }
+}
+\end{verbatim}
+
+Note that \verb+textFieldShouldEndEditing+ returns a \verb+Bool+ so we return \verb+true+ if 
+\newline \verb+textField.text+ is not an empty string (and therefore the user entered something, so yes, 
+the text Field Should End Editing). And we return \verb+false+ in the other case and keep the user just where they are. \\
+
+Finally, we wish to access whatever text the user inputted into the search field so that we can use it to search for
+weather. We're going to utilize our \newline \verb+textFieldDidEndEditing+ for this (which again, triggers when the user exits
+the keyboard screen).
+
+\begin{verbatim}
+func textFieldDidEndEditing(_ textField: UITextField) {
+    // Use searchTextField.text to get the weather for the city.
+    searchTextField.text = ""
+}
+\end{verbatim}
+
+Aaaaaannnndd major blueballs. Time for another Swift Deep Dive: \verb+protocols+.
+
+\end{document}
