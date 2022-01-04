@@ -1,9 +1,44 @@
-\documentclass[12pt, letterpaper]{article}
+\documentclass[11pt, letterpaper]{article}
 \usepackage[a4paper, total={7in, 9in}]{geometry}
+% Including and changing fonts %
+\usepackage[T1]{fontenc}
+\usepackage{cmbright}
+\usepackage{DejaVuSansMono}
 \setlength{\parindent}{0pt}
-\usepackage{xcolor}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{soul}
+\usepackage{color}
+
+
 \usepackage{atbegshi}
 \usepackage{graphicx}
+% For coloring within verbatims %
+\usepackage{fancyvrb}
+\usepackage{listings}
+\lstset{%
+        basicstyle=\ttfamily,
+        breaklines=true,
+        columns=fullflexible,
+        escapeinside = ||,
+        breakindent=0pt}
+% Add capability to frame code with a colored rectangle
+\usepackage[framemethod=tikz]{mdframed}
+\lstnewenvironment{code}{}{}
+
+% My custom colors %
+\definecolor{punctuationColor}{RGB}{105, 152, 171}
+\definecolor{codeBackgroundColor}{RGB}{26, 55, 77}
+\definecolor{trueBoolColor}{RGB}{177,208,224}
+\definecolor{variableNameColor}{RGB}{78, 159, 61}
+\definecolor{classNameColor}{RGB}{183,66,60}
+\definecolor{objectNameColor}{RGB}{222,131,77}
+\definecolor{stringColor}{RGB}{240, 210, 144}
+\definecolor{arrayNameColor}{RGB}{216, 233, 168}
+
+\DeclareRobustCommand{\hlbackground}[1]{{\sethlcolor{codeBackgroundColor}\hl{#1}}}
+\DeclareRobustCommand{\colorobject}[1]{{\color{objectNameColor}{#1}}}
+
+
 \graphicspath{ {./images/} }
 % For centering verbatims %
 \usepackage{fancyvrb}
@@ -461,7 +496,6 @@ func textFieldDidEndEditing(_ textField: UITextField) {
 }
 \end{verbatim}
 
-Aaaaaannnndd major blueballs. Time for another Swift Deep Dive: \verb+protocols+.
 
 \subsubsection*{145 Swift Protocals}
 
@@ -481,7 +515,7 @@ ckass MyClass: MyProtocol {}
 Create a new \textbf{macOS} $\Rightarrow$ \textbf{Command Line Tool} in Xcode and name it Protocols Demo, hit Finish,
 and save it anywhere. Clear out \emph{main.swft}. Let's define a class for birds. For now, our bird can fly and lay
 an egg if it's female. Additionally, let's create an Eagle class from our Bird class, but let's say eagles can Soar
-in addition to Fly. 
+in addition to Fly. Finally, we'll create a Penguin class, and we'll say Penguins can swim too.
 
 \begin{verbatim}
 main.swift
@@ -502,13 +536,338 @@ main.swift
 14      func soar() {
 15          print("The eagle soars.")
 16      }
-17 }
+17
+18  class Penguin: Bird {
+19      func swim() {
+20          print("The penguin swims.")
+21  }
 --------------------------------------------------------------------------------
 \end{verbatim}
 
 Alls well and good here. Our birds and eagles can fly, lay eggs, soar. Neato. But what's the issue? Well, what about 
 penguins? Penguins can swim and lay eggs, but they can't fly or soar. We'd like to create a Penguin class from our Bird
 class, but we can't have our penguins be flying around. Let's say we have a museum and they want to demonstrate 
-the flying capabilities of different birds. 
+the flying capabilities of different birds. \\
+
+We'll create a struct for the museum and it will have a method 
+\verb+flyingDemo+ that takes as input only objects that can fly (here, birds). Next, we'll instantiate an Eagle object
+and have our Mueseum demonstrate it's flying capabilities.
+
+\begin{verbatim}
+struct Museum(flyingObject: Bird) {
+    func flyingDemo(flyingObject: Bird) {
+        flyingObject.fly()
+    }
+}
+
+myEagle = Eagle()
+Museum.flyingDemo(flyingObject: myEagle)
+\end{verbatim}
+
+Run the program, and the console should log \verb+"The bird flies."+ Remember, this works because the Eagle class
+inherited the \verb+fly+ method from the \verb+Bird+ class. Now, if we made a Penguin object and passed it to
+tbe Museum's \verb+flyingDemo+ method, we'd get the same results. But penguins can't fly! We'll deal with that later. \\
+
+Let's say our museum wants to demonstrate other types of flight, like airplanes and helicopters. We could create
+classes for these inherting from \verb+Bird+ and override the \verb+fly+ method, but then our airplanes and helocp[ters
+would be able to lay eggs too. Rather, we want museum to be able to check if an object can fly irregardless if it's
+a bird or not, then demonstrate it's flying capabilities. We do this by using \verb+protocols+. \\
+
+We'll create a \verb+protocol CanFly+ at the beginning of our \emph{main.swift}. Next, we'll define the fly requirement by using
+the header of a function definition (not the body of the function!). Next, we assign the \verb+protocol+ to all classes
+that can fly by adding ``\verb+, CanFly+'' after our class names. Finally, we ensure each class marked with the 
+\verb+protocol+ actually has a \verb+fly+ method. If you mark a class with \verb+CanFly+ and don't give it \verb+f;y+
+method, you will get an error! Note that we don't mark penguin, because penguins can't fly darnit! \\
+
+\begin{verbatim}
+main.swift
+--------------------------------------------------------------------------------
+0  protocol CanFly {
+1       func fly()
+2       // Notice how we're not defining any fly function right here
+3  }
+4
+5  class Bird {
+6       var isFemale = true
+7       func layEgg() {
+8           print("The bird lays an egg.")
+9       }
+10 }
+11 
+12 class Eagle, CanFly {
+13      func fly() {
+14          print("The eagle flies.")
+15      }
+16      func soar() {
+17          print("The eagle soars.")
+18      }
+19 }
+20
+21 class Penginuin {
+22      func swim() {
+23          print("The penguin swims.")
+22      }
+25 }
+26
+27 class Airplane {
+28      func fly() {
+29          print("The airplane flies.")
+30      }
+31 }
+--------------------------------------------------------------------------------
+\end{verbatim}
+
+Finally, we can refactor our \verb+Museum+ struct definition so that it only accepts objects with a \verb+fly+ methods
+by using our \verb+CanFly protocol+ as the datatype:
+
+\begin{verbatim}
+struct Museum {
+    func FlyingDemo(flyingObject: CanFly) {
+        flyingObject.fly()
+    }
+}
+\end{verbatim}
+
+Note that you can define and use multiple \verb+protocols+ defining your class our struct like so:
+\verb+class MyClass: ClassToInheritFrom, FirstProtocol, SecondProtocol, ...+ and etc.
+
+\subsubsection*{AJAX and API's in JavaScript}
+
+In this section, we're going to learn how to make requests using JavaScript code. It's a concept called \textbf{AJAX}:
+making requests behind the scenes will the user is interacting with the web app. \textbf{AJAC} stands for Asynchronous
+JavaScript and XML (even though instead of XML we use JSON).
+For example, if we're scrolling down 
+Reddit we want the app to continuously offer new posts. Or, if we have a search bar and we want to present live
+search results as the user types. \\
+
+When you use a browser to navigate to a website, you are a making a request. Usually, this request returns a mess of HTML
+which your browser then constructs into a website you can use. With \textbf{AJAX}, we want to request a stripped down
+object filled with information that we can manupulate easily. The name of this type of object is \textbf{JSON}. Here's an example 
+of a request you can make that will return one of these stripped down objects: \\
+
+\centerline{api.cryptonator.com/api/ticker/btc-usd}
+
+If you follow this link your browser will return an object like the followng: \\
+
+\begin{mdframed}[hidealllines=true,backgroundcolor=codeBackgroundColor]
+    {\color{punctuationColor} \tt 
+{    {\fontfamily{DejaVuSansMono}
+    \centerline{api.cryptonator.com/api/ticker/btc-used in your browser} 
+    \centerline{\rule{7in}{1.5pt}}   
+    \vspace{.5cm}
+1         \{ \\
+2             \phantom{xxxxx}{\bf \colorobject{"ticker"}}: \{ \\
+3             \phantom{xxxxxxxxxx}{\it {\color{variableNameColor}"base"}}: {\color{stringColor}"BTC"}, \\
+4             \phantom{xxxxxxxxxx}{\it \color{variableNameColor}{"target"}}: {\color{stringColor}"USD"}, \\
+5             \phantom{xxxxxxxxxx}{\it \color{variableNameColor}{"price"}}: {\color{stringColor}"46318.38591953",} \\
+6             \phantom{xxxxxxxxxx}{\it \color{variableNameColor}{"volume"}}: {\color{stringColor}"16442.72301906"}, \\
+7             \phantom{xxxxxxxxxx}{\it \color{variableNameColor}{"change"}}: {\color{stringColor}"249.44780355"} \\
+8             \phantom{xxxxx}\}, \\
+9             \phantom{xxxxx}{\it \color{variableNameColor}{"timestamp"}}: {\color{stringColor}1641249902}, \\
+10            \phantom{xxxxx}{\it \color{variableNameColor}{"success"}}: {\color{trueBoolColor}true}, \\
+11            \phantom{xxxxx}{\it \color{variableNameColor}{"error"}}: {\color{stringColor}""} \\
+12         \}
+    }
+    }}
+\end{mdframed}
+
+An \textbf{API} is an application programming interfrace; these are portals into other applications that allow us to
+gather information, etc. A lot of more useful APIs cost money to use. Lots of APIs work with a data format called 
+\textbf{JSON}, or JavaScript Object Notation. We like to use it because it is uniform and universal. It looks like
+a JavaScript object, but with a few key differences. Each key must by surrounded by quotes in the definition. \\
+
+The types of data a JSON object can hold include: objects, arrays, strings, numbers, booleans, and null.
+Now, when we first get our JSON object, it's just a string. It needs to be parsed into a JavaSCript object. Luckily
+there's an easy JavaScript funciton for that: \verb+JSON.parse+. For now, let's save a dummy JSON object in a variable,
+then call our parse method on it:
+
+\begin{verbatim}
+const data = "{"key1":value1,"key2":value2,"key3":value3}"
+const parsedData = JSON.parse(data)
+\end{verbatim}
+
+Now we can access \verb+value1+, \verb+value2+, \verb+value3+ with \verb+parsedData.key1+, \verb+parsedData.key2+, etc.
+etc. Additionally, we can go the other way. We can turn a JavaScript object into a string for API usage:
+\verb+JSON.string+. \\ 
+
+\subsubsection*{Working with Postman}
+
+The most basic thing to do with Postman: enter a URL and press Send. If the URL is a webpage, it will return HTML. If it's
+and API link, it will return a JSON object. There are many different types of requests that can be made, but for now
+we'll be using the \textbf{GET} request, veruses the \textbf{POST} reqhest, which will send some to the server. \\
+
+A JSON object consists of a few different parts: the body (which contains the code we've been working with above),
+the status (which provides information about the success or failure of our request), and headers (key/value pairs
+that provide additional information about the object like a timestamp, content-type, etc.). 
+
+\subsubsection*{Query Strings and Headers}
+
+Example: tmaze.com/api. Query string: 
+
+\begin{verbatim}
+/search/shows?q=:query 
+http://api.tvmaze.com/search/shows?q=girls
+\end{verbatim}
+
+TVMaze will return multiple results in a JSON object if there are multiple matches. Show lookup endpoint:
+
+\begin{verbatim}
+/lookup/shows?imdb=:imdbid
+http://api.tvmaze.com/lookup/shows?imdb=tt0944947
+\end{verbatim}
+
+Query strings are information we can append to URLs that will impact what the API returns. \\
+
+Episode by TVMaze id, season and number. Demonstrate how we can pass multiple values through the URL:
+
+\begin{verbatim}
+/shows/:id/episodebynumber?season=:season&number=:number
+http://api.tvmaze.com/shows/1/episodebynumber?season=1&number=1
+\end{verbatim}
+
+We can use Postman to build query string URLs. \\
+
+Openweathermap API. You can pass in a city, or a latitude and longitute. \\
+
+Icanhazdadjoke. Demonstrating how to give a header to an API that requires it. In Postman, enter 
+https://icanhazdadjoke.com into the bar. Next, click the Headers tab and add key \verb+Accept+ with 
+value \verb+application/json+. Pressing Send, and we'll get a JSON object with an \verb+id+, a random joke,
+and a status. 
+
+\subsubsection*{Making XHR's, or XMLHttpRequests}
+
+Horrible, old way to do this. Just for appreciation of newer methods. First we make an XMLttoRequest object.
+Next we define \verb+onload+ and \verb+onerror+ callbacks. Then we open the request, then we send the request. Example:
+
+{\small
+\begin{verbatim}
+app.js
+--------------------------------------------------------------------------------
+const req = new XMLHttpRequest();
+req,onload = function() {
+   console.log("Request succeeded.");
+   console.log(this);
+}
+req.onerror = function() {
+   console.log("Request failed.");
+   console.log(this);
+}
+
+req.open('GET', 'https://api.cryptonator.com/api/ticker/btc-usd');
+req.send();
+--------------------------------------------------------------------------------
+\end{verbatim}
+}
+
+We receive back a request object with a \verb+responseText+  property that includes the data we wish to parse. We'll save
+it as a variable \verb+data+ in our \verb+onload+ function and log the ticker price:
+
+{\small
+    \begin{verbatim}
+        const data = JSON.parse(this.responseText);
+        console.log(data.ticker.price);
+    \end{verbatim}
+}
+
+That's all for XMLHttpRequests.
+
+\subsubsection{The Fetch API}
+
+Written is response to how sucky XMLHttpRequests are. Fetch does the same thing, but it uses promises, async, and
+await. Here's the syntax; the result is a Promise.
+
+{\small
+    \begin{verbatim}
+        fetch('https://api.cryptonator.com/api/ticker/btc-usd')
+            .then(res =>
+                console.log("RESPONSE:", res);
+            })
+            .catch((e => {
+                console.log("ERROR:", e);
+            })
+    \end{verbatim}
+}
+
+Fetch's \verb+Promise+ result will resolve as soon as it has received the object's headers. So, inside \verb+.then+,
+there is still a possibility the request will fail. We will add the function \verb+res.json()+ which returns 
+a \verb+Promise+ that resolves when all of the JSON object is loaded. We'll then return \verb+res.json()+ and chain
+another \verb+.then+ which will run once \verb+res.json+ has resolved:
+
+\begin{verbatim}
+            .then(res => {
+                console.log("Waiting for JSON object parson to finish."
+                return res.json()
+            })
+            .then(data => {
+                console.log("Data parsed:", data);
+                console.log(data.ticker.price);
+            })
+\end{verbatim}
+
+And now using \verb+async+ with error handling:
+
+{\small
+\begin{verbatim}
+const fetBitCoinPrice = async () => {
+    try {
+        const res = await fetch('https://api.cryptonator.com/api/ticker/btc-usd');
+        const data = await res.json();
+        console.log(data.ticker.price);
+     catch (e) {
+        console.log("Something went wrong.")
+     }
+}
+\end{verbatim}
+}
+
+\subsubsection*{Intro to Axios: A Library for Making HTTP Requests}
+
+Axios is a JavaScript library which must be included in our HTML in order for it to work:
+
+{\small
+\begin{verbatim}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js">
+</script>
+\end{verbatim}
+}
+
+{\small
+\begin{verbatim}
+app.js
+--------------------------------------------------------------------------------
+axios.get('https://api.cryptonator.com/api/ticker/btc-usd')
+    .then(res => {
+        console.log(res.data.ticker.price);
+    })
+    .catch(err => {
+        console.log("Error:", err);
+    })
+
+const fetchBitcoinPrice = async () => {
+    try {
+        const res = 
+            await axios.get('https://api.cryptonator.com/api/ticker/btc-usd')
+            console.log(res.data.ticker.price);
+    } catch (e) {
+        console.log("Error: ", e);
+    }
+\end{verbatim}
+}
+
+Returns a Promise containing data that's already been parsed! \verb+axios.get+ only resolves once the entire JSON
+object has been downloaded, unlike \verb+fetch+ which resolves after the headers has been received. Next we'll learn
+how to configure headers using axios. \\
+
+\begin{verbatim}
+const getDadJoke = async () => {
+    const config = { headers: { Accept: 'application/json' } };
+    const res = await axios.get('https://icanhazdadjokes', config);
+    console.log(res.data.joke);
+}
+\end{verbatim}
+
+\section{References}
+
+\subsubsection*{Syntax Highlight}
 
 \end{document}
